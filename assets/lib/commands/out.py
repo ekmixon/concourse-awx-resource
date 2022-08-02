@@ -12,9 +12,10 @@ def main():
     awx = AWX(_in)
     results = awx.launch()
 
-    metadata = []
-    for k in sorted(results.keys()):
-        metadata.append({"name": k, "value": json.dumps(results[k])})
+    metadata = [
+        {"name": k, "value": json.dumps(results[k])}
+        for k in sorted(results.keys())
+    ]
 
     _out = {"version": {}, "metadata": metadata}
 
